@@ -34,8 +34,8 @@ describe("Conversation", () => {
 
     it("멤버 userId에 접근할 수 있다", () => {
       const conv = createTestConversation();
-      expect(conv.members[0].userId).toBe(USER_1);
-      expect(conv.members[1].userId).toBe(USER_2);
+      expect(conv.members[0]!.userId).toBe(USER_1);
+      expect(conv.members[1]!.userId).toBe(USER_2);
     });
   });
 
