@@ -12,5 +12,9 @@ export { SupabaseCommentRepository } from "./supabase/SupabaseCommentRepository.
 export { SupabaseConversationRepository } from "./supabase/SupabaseConversationRepository.js";
 export { SupabaseMessageRepository } from "./supabase/SupabaseMessageRepository.js";
 
+// ── Supabase Realtime 어댑터 ──
+export { SupabaseMessageRealtime } from "./supabase/SupabaseMessageRealtime.js";
+export { SupabaseCommentRealtime } from "./supabase/SupabaseCommentRealtime.js";
+
 // ── DI 컨테이너 등록 ──
 export { registerSupabaseAdapters } from "./container.js";

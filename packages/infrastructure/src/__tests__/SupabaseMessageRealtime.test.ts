@@ -16,8 +16,6 @@ import { SupabaseMessageRepository } from "../supabase/SupabaseMessageRepository
 import { createAdminClient } from "./helpers/test-client.js";
 import { cleanDatabase } from "./helpers/test-db.js";
 import { createTestAuthUser } from "./helpers/test-auth.js";
-import type { RealtimeSubscription } from "@expo-playground/application";
-import type { SupabaseClient } from "@supabase/supabase-js";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 
 const admin = createAdminClient();

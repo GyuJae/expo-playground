@@ -7,6 +7,8 @@ import { SupabasePostRepository } from "./supabase/SupabasePostRepository.js";
 import { SupabaseCommentRepository } from "./supabase/SupabaseCommentRepository.js";
 import { SupabaseConversationRepository } from "./supabase/SupabaseConversationRepository.js";
 import { SupabaseMessageRepository } from "./supabase/SupabaseMessageRepository.js";
+import { SupabaseMessageRealtime } from "./supabase/SupabaseMessageRealtime.js";
+import { SupabaseCommentRealtime } from "./supabase/SupabaseCommentRealtime.js";
 
 /**
  * Supabase 어댑터를 DI 컨테이너에 등록한다.
@@ -20,4 +22,6 @@ export function registerSupabaseAdapters(client: SupabaseClient): void {
   container.register(DI_TOKENS.CommentRepository, { useClass: SupabaseCommentRepository });
   container.register(DI_TOKENS.ConversationRepository, { useClass: SupabaseConversationRepository });
   container.register(DI_TOKENS.MessageRepository, { useClass: SupabaseMessageRepository });
+  container.register(DI_TOKENS.MessageRealtimePort, { useClass: SupabaseMessageRealtime });
+  container.register(DI_TOKENS.CommentRealtimePort, { useClass: SupabaseCommentRealtime });
 }

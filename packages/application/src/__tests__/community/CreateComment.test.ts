@@ -2,11 +2,8 @@ import { describe, it, expect, vi } from "vitest";
 import {
   Post,
   PostContent,
-  Comment,
-  CommentBody,
   createPostId,
   createUserId,
-  createCommentId,
   InvalidUuidError,
   InvalidCommentBodyError,
 } from "@expo-playground/domain";
