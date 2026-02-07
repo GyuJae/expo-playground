@@ -22,7 +22,6 @@ beforeEach(async () => {
 describe("SupabaseUserRepository", () => {
   it("존재하는 사용자를 조회한다", async () => {
     const testUser = await createTestAuthUser(admin, {
-      email: "exist@example.com",
       nickname: "ExistUser",
     });
 
@@ -30,7 +29,7 @@ describe("SupabaseUserRepository", () => {
 
     expect(user).not.toBeNull();
     expect(user!.id).toBe(testUser.id);
-    expect(user!.email.value).toBe("exist@example.com");
+    expect(user!.email.value).toBe(testUser.email);
     expect(user!.nickname.value).toBe("ExistUser");
   });
 
@@ -43,7 +42,6 @@ describe("SupabaseUserRepository", () => {
 
   it("새 사용자를 저장한다 (upsert)", async () => {
     const testUser = await createTestAuthUser(admin, {
-      email: "new@example.com",
       nickname: "OriginalNick",
     });
 
@@ -51,7 +49,7 @@ describe("SupabaseUserRepository", () => {
     const userId = createUserId(testUser.id);
     const user = User.reconstruct({
       id: userId,
-      email: Email.reconstruct("new@example.com"),
+      email: Email.reconstruct(testUser.email),
       nickname: Nickname.reconstruct("UpdatedNick"),
       avatarUrl: AvatarUrl.reconstruct("https://example.com/avatar.png"),
       createdAt: new Date(),
@@ -67,7 +65,6 @@ describe("SupabaseUserRepository", () => {
 
   it("사용자 정보를 수정한다 (닉네임/아바타 변경)", async () => {
     const testUser = await createTestAuthUser(admin, {
-      email: "modify@example.com",
       nickname: "BeforeName",
     });
     const userId = createUserId(testUser.id);
