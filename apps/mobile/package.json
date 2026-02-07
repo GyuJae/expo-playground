@@ -1,0 +1,34 @@
+{
+  "name": "@expo-playground/mobile",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./index.ts",
+  "scripts": {
+    "build": "echo 'skip: use expo run or EAS'",
+    "dev": "expo start",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .expo .turbo"
+  },
+  "dependencies": {
+    "@expo-playground/domain": "workspace:*",
+    "@expo-playground/application": "workspace:*",
+    "@expo-playground/infrastructure": "workspace:*",
+    "expo": "~54.0.0",
+    "expo-constants": "~18.0.0",
+    "expo-linking": "~8.0.0",
+    "expo-router": "~6.0.0",
+    "expo-status-bar": "~3.0.0",
+    "react": "19.1.0",
+    "react-native": "~0.81.0",
+    "react-native-safe-area-context": "~5.4.0",
+    "react-native-screens": "~4.11.0",
+    "react-native-web": "~0.20.0"
+  },
+  "devDependencies": {
+    "@expo-playground/config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "typescript": "~5.9.0",
+    "eslint": "^9.0.0"
+  }
+}

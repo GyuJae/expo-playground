@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Expo Playground",
+    "slug": "expo-playground",
+    "version": "0.0.1",
+    "scheme": "expo-playground",
+    "newArchEnabled": true,
+    "platforms": ["ios", "android"],
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#ffffff"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router"]
+  }
+}
