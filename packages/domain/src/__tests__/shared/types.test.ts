@@ -2,6 +2,9 @@ import { describe, it, expect } from "vitest";
 import {
   createUserId,
   createPostId,
+  createCommentId,
+  createConversationId,
+  createMessageId,
   UUID_REGEX,
 } from "../../shared/types.js";
 import { InvalidUuidError } from "../../shared/DomainError.js";
@@ -47,5 +50,41 @@ describe("createPostId", () => {
   it("유효하지 않은 UUID에 InvalidUuidError를 던진다", () => {
     expect(() => createPostId("bad")).toThrow(InvalidUuidError);
     expect(() => createPostId("bad")).toThrow('PostId');
+  });
+});
+
+describe("createCommentId", () => {
+  it("유효한 UUID로 CommentId를 생성한다", () => {
+    const id = createCommentId("770e8400-e29b-41d4-a716-446655440000");
+    expect(id).toBe("770e8400-e29b-41d4-a716-446655440000");
+  });
+
+  it("유효하지 않은 UUID에 InvalidUuidError를 던진다", () => {
+    expect(() => createCommentId("bad")).toThrow(InvalidUuidError);
+    expect(() => createCommentId("bad")).toThrow("CommentId");
+  });
+});
+
+describe("createConversationId", () => {
+  it("유효한 UUID로 ConversationId를 생성한다", () => {
+    const id = createConversationId("880e8400-e29b-41d4-a716-446655440000");
+    expect(id).toBe("880e8400-e29b-41d4-a716-446655440000");
+  });
+
+  it("유효하지 않은 UUID에 InvalidUuidError를 던진다", () => {
+    expect(() => createConversationId("bad")).toThrow(InvalidUuidError);
+    expect(() => createConversationId("bad")).toThrow("ConversationId");
+  });
+});
+
+describe("createMessageId", () => {
+  it("유효한 UUID로 MessageId를 생성한다", () => {
+    const id = createMessageId("990e8400-e29b-41d4-a716-446655440000");
+    expect(id).toBe("990e8400-e29b-41d4-a716-446655440000");
+  });
+
+  it("유효하지 않은 UUID에 InvalidUuidError를 던진다", () => {
+    expect(() => createMessageId("bad")).toThrow(InvalidUuidError);
+    expect(() => createMessageId("bad")).toThrow("MessageId");
   });
 });

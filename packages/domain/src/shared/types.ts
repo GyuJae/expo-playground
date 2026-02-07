@@ -16,6 +16,9 @@ export const UUID_REGEX =
 
 export type UserId = Brand<string, "UserId">;
 export type PostId = Brand<string, "PostId">;
+export type CommentId = Brand<string, "CommentId">;
+export type ConversationId = Brand<string, "ConversationId">;
+export type MessageId = Brand<string, "MessageId">;
 
 /** UserId 생성 — UUID 형식 검증 */
 export function createUserId(id: string): UserId {
@@ -31,6 +34,30 @@ export function createPostId(id: string): PostId {
     throw new InvalidUuidError("PostId", id);
   }
   return id as PostId;
+}
+
+/** CommentId 생성 — UUID 형식 검증 */
+export function createCommentId(id: string): CommentId {
+  if (!UUID_REGEX.test(id)) {
+    throw new InvalidUuidError("CommentId", id);
+  }
+  return id as CommentId;
+}
+
+/** ConversationId 생성 — UUID 형식 검증 */
+export function createConversationId(id: string): ConversationId {
+  if (!UUID_REGEX.test(id)) {
+    throw new InvalidUuidError("ConversationId", id);
+  }
+  return id as ConversationId;
+}
+
+/** MessageId 생성 — UUID 형식 검증 */
+export function createMessageId(id: string): MessageId {
+  if (!UUID_REGEX.test(id)) {
+    throw new InvalidUuidError("MessageId", id);
+  }
+  return id as MessageId;
 }
 
 // InvalidUuidError를 여기서 직접 import하면 순환 의존 가능성이 있으므로
