@@ -1,8 +1,8 @@
 import { Entity } from "../../shared/Entity.js";
 import type { UserId } from "../../shared/types.js";
-import { Email } from "../value-objects/Email.js";
-import { Nickname } from "../value-objects/Nickname.js";
-import { AvatarUrl } from "../value-objects/AvatarUrl.js";
+import type { Email } from "../value-objects/Email.js";
+import type { Nickname } from "../value-objects/Nickname.js";
+import type { AvatarUrl } from "../value-objects/AvatarUrl.js";
 
 interface CreateUserParams {
   id: UserId;

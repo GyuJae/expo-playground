@@ -1,7 +1,7 @@
 /**
  * ValueObject 베이스 클래스 — 값 기반 동등성 비교, 불변
  */
-export abstract class ValueObject<T extends Record<string, unknown>> {
+export abstract class ValueObject<T extends object> {
   protected readonly props: Readonly<T>;
 
   constructor(props: T) {

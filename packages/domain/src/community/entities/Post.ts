@@ -1,7 +1,7 @@
 import { Entity } from "../../shared/Entity.js";
 import type { PostId, UserId } from "../../shared/types.js";
 import { AlreadyDeletedPostError } from "../../shared/DomainError.js";
-import { PostContent } from "../value-objects/PostContent.js";
+import type { PostContent } from "../value-objects/PostContent.js";
 
 interface CreatePostParams {
   id: PostId;
