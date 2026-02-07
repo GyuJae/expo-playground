@@ -7,7 +7,11 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "db:start": "npx supabase start",
+    "db:stop": "npx supabase stop",
+    "db:reset": "npx supabase db reset",
+    "db:migration": "npx supabase migration new"
   },
   "devDependencies": {
     "turbo": "^2.8"
