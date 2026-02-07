@@ -7,7 +7,6 @@ import {
   createUserId,
   InvalidUuidError,
   InvalidNicknameError,
-  InvalidAvatarUrlError,
 } from "@expo-playground/domain";
 import type { UserRepository } from "../../auth/ports/UserRepository.js";
 import { UpdateProfile } from "../../auth/use-cases/UpdateProfile.js";
