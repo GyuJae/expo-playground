@@ -58,3 +58,24 @@ export class AlreadyDeletedPostError extends DomainError {
     super("이미 삭제된 게시글입니다");
   }
 }
+
+/** 유효하지 않은 댓글 본문 */
+export class InvalidCommentBodyError extends DomainError {
+  constructor(reason: string) {
+    super(`유효하지 않은 댓글 본문입니다: ${reason}`);
+  }
+}
+
+/** 이미 삭제된 댓글 */
+export class AlreadyDeletedCommentError extends DomainError {
+  constructor() {
+    super("이미 삭제된 댓글입니다");
+  }
+}
+
+/** 유효하지 않은 메시지 본문 */
+export class InvalidMessageBodyError extends DomainError {
+  constructor(reason: string) {
+    super(`유효하지 않은 메시지 본문입니다: ${reason}`);
+  }
+}
