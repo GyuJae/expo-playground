@@ -1,0 +1,33 @@
+{
+  "name": "@expo-playground/infrastructure",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@expo-playground/domain": "workspace:*",
+    "@expo-playground/application": "workspace:*",
+    "tsyringe": "^4.10.0",
+    "reflect-metadata": "^0.2.0"
+  },
+  "devDependencies": {
+    "@expo-playground/config": "workspace:*",
+    "typescript": "~5.9.0",
+    "vitest": "^4.0.0",
+    "eslint": "^9.0.0"
+  }
+}
