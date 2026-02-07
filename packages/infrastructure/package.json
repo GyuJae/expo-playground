@@ -19,15 +19,16 @@
     "clean": "rm -rf dist *.tsbuildinfo"
   },
   "dependencies": {
-    "@expo-playground/domain": "workspace:*",
     "@expo-playground/application": "workspace:*",
-    "tsyringe": "^4.10.0",
-    "reflect-metadata": "^0.2.0"
+    "@expo-playground/domain": "workspace:*",
+    "@supabase/supabase-js": "^2.95.3",
+    "reflect-metadata": "^0.2.0",
+    "tsyringe": "^4.10.0"
   },
   "devDependencies": {
     "@expo-playground/config": "workspace:*",
+    "eslint": "^9.0.0",
     "typescript": "~5.9.0",
-    "vitest": "^4.0.0",
-    "eslint": "^9.0.0"
+    "vitest": "^4.0.0"
   }
 }
