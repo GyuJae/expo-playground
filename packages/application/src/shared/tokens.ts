@@ -5,4 +5,7 @@ export const DI_TOKENS = {
   AuthProvider: "AuthProvider",
   UserRepository: "UserRepository",
   PostRepository: "PostRepository",
+  CommentRepository: "CommentRepository",
+  ConversationRepository: "ConversationRepository",
+  MessageRepository: "MessageRepository",
 } as const;
