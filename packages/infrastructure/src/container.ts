@@ -4,6 +4,9 @@ import type { SupabaseClient } from "./supabase/client.js";
 import { SupabaseAuthProvider } from "./supabase/SupabaseAuthProvider.js";
 import { SupabaseUserRepository } from "./supabase/SupabaseUserRepository.js";
 import { SupabasePostRepository } from "./supabase/SupabasePostRepository.js";
+import { SupabaseCommentRepository } from "./supabase/SupabaseCommentRepository.js";
+import { SupabaseConversationRepository } from "./supabase/SupabaseConversationRepository.js";
+import { SupabaseMessageRepository } from "./supabase/SupabaseMessageRepository.js";
 
 /**
  * Supabase 어댑터를 DI 컨테이너에 등록한다.
@@ -14,4 +17,7 @@ export function registerSupabaseAdapters(client: SupabaseClient): void {
   container.register(DI_TOKENS.AuthProvider, { useClass: SupabaseAuthProvider });
   container.register(DI_TOKENS.UserRepository, { useClass: SupabaseUserRepository });
   container.register(DI_TOKENS.PostRepository, { useClass: SupabasePostRepository });
+  container.register(DI_TOKENS.CommentRepository, { useClass: SupabaseCommentRepository });
+  container.register(DI_TOKENS.ConversationRepository, { useClass: SupabaseConversationRepository });
+  container.register(DI_TOKENS.MessageRepository, { useClass: SupabaseMessageRepository });
 }

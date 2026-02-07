@@ -8,6 +8,9 @@ export { createSupabaseClient, type SupabaseClient } from "./supabase/client.js"
 export { SupabaseAuthProvider } from "./supabase/SupabaseAuthProvider.js";
 export { SupabaseUserRepository } from "./supabase/SupabaseUserRepository.js";
 export { SupabasePostRepository } from "./supabase/SupabasePostRepository.js";
+export { SupabaseCommentRepository } from "./supabase/SupabaseCommentRepository.js";
+export { SupabaseConversationRepository } from "./supabase/SupabaseConversationRepository.js";
+export { SupabaseMessageRepository } from "./supabase/SupabaseMessageRepository.js";
 
 // ── DI 컨테이너 등록 ──
 export { registerSupabaseAdapters } from "./container.js";
