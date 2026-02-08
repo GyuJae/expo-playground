@@ -46,5 +46,6 @@ export { Comment } from "./community/entities/Comment.js";
 // ── messaging ──
 export { MessageBody } from "./messaging/value-objects/MessageBody.js";
 export { ConversationMember } from "./messaging/value-objects/ConversationMember.js";
+export { ReadPosition } from "./messaging/value-objects/ReadPosition.js";
 export { Conversation } from "./messaging/entities/Conversation.js";
 export { Message } from "./messaging/entities/Message.js";
