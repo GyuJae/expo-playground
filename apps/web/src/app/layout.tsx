@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SupabaseProvider } from "@/components/providers/SupabaseProvider";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,7 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body>
-        <SupabaseProvider>{children}</SupabaseProvider>
+        <SupabaseProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </SupabaseProvider>
       </body>
     </html>
   );
