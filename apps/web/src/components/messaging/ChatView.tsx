@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MessageBubble } from "./MessageBubble";
 import { ChatInput } from "./ChatInput";
+import { useRealtimeMessages } from "@/hooks/useRealtimeMessages";
 import type { MessageDTO } from "@/lib/dto/types";
 
 interface Props {
@@ -26,40 +27,15 @@ export function ChatView({ conversationId, initialMessages, currentUserId }: Pro
     });
   }, []);
 
-  /** Realtime에서 받은 메시지 추가 (외부에서 호출) */
-  const addMessage = useCallback((message: MessageDTO) => {
+  const handleRealtimeMessage = useCallback((message: MessageDTO) => {
     setMessages((prev) => {
       if (prev.some((m) => m.id === message.id)) return prev;
       return [...prev, message];
     });
   }, []);
 
-  return (
-    <ChatViewInner
-      conversationId={conversationId}
-      messages={messages}
-      currentUserId={currentUserId}
-      onSent={handleSent}
-      addMessage={addMessage}
-      bottomRef={bottomRef}
-    />
-  );
-}
+  useRealtimeMessages(conversationId, handleRealtimeMessage);
 
-function ChatViewInner({
-  conversationId,
-  messages,
-  currentUserId,
-  onSent,
-  bottomRef,
-}: {
-  conversationId: string;
-  messages: MessageDTO[];
-  currentUserId: string;
-  onSent: (message: MessageDTO) => void;
-  addMessage: (message: MessageDTO) => void;
-  bottomRef: React.RefObject<HTMLDivElement | null>;
-}) {
   return (
     <div className="flex h-[calc(100vh-8rem)] flex-col">
       <div className="flex-1 space-y-3 overflow-y-auto p-4">
@@ -72,7 +48,7 @@ function ChatViewInner({
         ))}
         <div ref={bottomRef} />
       </div>
-      <ChatInput conversationId={conversationId} onSent={onSent} />
+      <ChatInput conversationId={conversationId} onSent={handleSent} />
     </div>
   );
 }
