@@ -13,9 +13,11 @@
     "@expo-playground/application": "workspace:*",
     "@expo-playground/domain": "workspace:*",
     "@expo-playground/infrastructure": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.18",
     "next": "~15.5.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@expo-playground/config": "workspace:*",
