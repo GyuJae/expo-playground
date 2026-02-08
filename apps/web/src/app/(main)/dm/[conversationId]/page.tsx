@@ -1,6 +1,6 @@
 import { ChatHeader } from "@/components/messaging/ChatHeader";
 import { ChatView } from "@/components/messaging/ChatView";
-import { fetchMessages, getCurrentUserId } from "../actions";
+import { fetchMessages, fetchReadPositions, getCurrentUserId } from "../actions";
 
 interface Props {
   params: Promise<{ conversationId: string }>;
@@ -8,9 +8,10 @@ interface Props {
 
 export default async function ChatPage({ params }: Props) {
   const { conversationId } = await params;
-  const [messages, currentUserId] = await Promise.all([
+  const [messages, currentUserId, readPositions] = await Promise.all([
     fetchMessages(conversationId),
     getCurrentUserId(),
+    fetchReadPositions(conversationId),
   ]);
 
   return (
@@ -20,6 +21,7 @@ export default async function ChatPage({ params }: Props) {
         conversationId={conversationId}
         initialMessages={messages}
         currentUserId={currentUserId}
+        initialReadPositions={readPositions}
       />
     </div>
   );

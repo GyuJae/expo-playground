@@ -1,4 +1,4 @@
-import type { User, Post, Comment, Message, Conversation } from "@expo-playground/domain";
+import type { User, Post, Comment, Message, Conversation, ReadPosition } from "@expo-playground/domain";
 import type { ConversationSummary } from "@expo-playground/application";
 import type {
   UserDTO,
@@ -7,6 +7,7 @@ import type {
   MessageDTO,
   ConversationDTO,
   ConversationSummaryDTO,
+  ReadPositionDTO,
 } from "./types";
 
 /** 도메인 엔티티 → 직렬화 가능한 DTO 변환 */
@@ -70,5 +71,14 @@ export function toConversationSummaryDTO(
   return {
     conversation: toConversationDTO(summary.conversation),
     lastMessage: summary.lastMessage ? toMessageDTO(summary.lastMessage) : null,
+    unreadCount: summary.unreadCount,
+  };
+}
+
+export function toReadPositionDTO(rp: ReadPosition): ReadPositionDTO {
+  return {
+    conversationId: rp.conversationId,
+    userId: rp.userId,
+    lastReadAt: rp.lastReadAt.toISOString(),
   };
 }

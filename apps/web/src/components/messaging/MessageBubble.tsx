@@ -5,9 +5,10 @@ import type { MessageDTO } from "@/lib/dto/types";
 interface Props {
   message: MessageDTO;
   isOwn: boolean;
+  isRead?: boolean;
 }
 
-export function MessageBubble({ message, isOwn }: Props) {
+export function MessageBubble({ message, isOwn, isRead }: Props) {
   return (
     <div className={cn("flex", isOwn ? "justify-end" : "justify-start")}>
       <div
@@ -19,14 +20,17 @@ export function MessageBubble({ message, isOwn }: Props) {
         )}
       >
         <p className="whitespace-pre-wrap text-sm">{message.body}</p>
-        <p
+        <div
           className={cn(
-            "mt-1 text-xs",
+            "mt-1 flex items-center gap-1 text-xs",
             isOwn ? "text-primary-foreground/70" : "text-muted-foreground",
           )}
         >
-          {formatRelativeTime(new Date(message.createdAt))}
-        </p>
+          <span>{formatRelativeTime(new Date(message.createdAt))}</span>
+          {isOwn && isRead && (
+            <span className="text-primary-foreground/70">읽음</span>
+          )}
+        </div>
       </div>
     </div>
   );

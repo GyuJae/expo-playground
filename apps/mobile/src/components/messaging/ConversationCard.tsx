@@ -5,9 +5,10 @@ import type { ConversationSummary } from "@expo-playground/application";
 interface Props {
   summary: ConversationSummary;
   currentUserId: string;
+  unreadCount?: number;
 }
 
-export function ConversationCard({ summary, currentUserId }: Props) {
+export function ConversationCard({ summary, currentUserId, unreadCount = 0 }: Props) {
   const router = useRouter();
   const other = summary.conversation.members.find(
     (m) => m.userId !== currentUserId,
@@ -33,6 +34,13 @@ export function ConversationCard({ summary, currentUserId }: Props) {
           </Text>
         )}
       </View>
+      {unreadCount > 0 && (
+        <View className="min-w-5 items-center justify-center rounded-full bg-black px-1.5 py-0.5">
+          <Text className="text-xs font-medium text-white">
+            {unreadCount > 99 ? "99+" : unreadCount}
+          </Text>
+        </View>
+      )}
     </Pressable>
   );
 }

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useMessages } from "@/hooks/useMessages";
+import { useReadReceipts } from "@/hooks/useReadReceipts";
 import { useAuth } from "@/context/AuthContext";
 import { MessageBubble } from "@/components/messaging/MessageBubble";
 import { MessageInput } from "@/components/messaging/MessageInput";
@@ -21,10 +22,16 @@ export default function ChatScreen() {
   const router = useRouter();
   const { user } = useAuth();
   const { messages, loading, error, addMessage } = useMessages(conversationId!);
+  const { readPositions, markAsRead } = useReadReceipts(conversationId!);
   const flatListRef = useRef<FlatList>(null);
 
   if (loading) return <LoadingView />;
   if (error) return <ErrorView message={error} />;
+
+  // 상대방의 읽음 위치
+  const otherReadPosition = readPositions.find(
+    (rp) => rp.userId !== user?.id,
+  );
 
   return (
     <KeyboardAvoidingView
@@ -41,13 +48,23 @@ export default function ChatScreen() {
         ref={flatListRef}
         data={messages}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <MessageBubble message={item} isOwn={item.senderId === user?.id} />
-        )}
+        renderItem={({ item }) => {
+          const isOwn = item.senderId === user?.id;
+          const isRead =
+            isOwn &&
+            otherReadPosition != null &&
+            item.createdAt.getTime() <=
+              otherReadPosition.lastReadAt.getTime();
+
+          return (
+            <MessageBubble message={item} isOwn={isOwn} isRead={isRead} />
+          );
+        }}
         contentContainerStyle={{ padding: 16 }}
-        onContentSizeChange={() =>
-          flatListRef.current?.scrollToEnd({ animated: true })
-        }
+        onContentSizeChange={() => {
+          flatListRef.current?.scrollToEnd({ animated: true });
+          markAsRead();
+        }}
       />
       <MessageInput conversationId={conversationId!} onSent={addMessage} />
     </KeyboardAvoidingView>

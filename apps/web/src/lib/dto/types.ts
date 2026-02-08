@@ -48,4 +48,11 @@ export interface ConversationMemberDTO {
 export interface ConversationSummaryDTO {
   conversation: ConversationDTO;
   lastMessage: MessageDTO | null;
+  unreadCount: number;
+}
+
+export interface ReadPositionDTO {
+  conversationId: string;
+  userId: string;
+  lastReadAt: string;
 }

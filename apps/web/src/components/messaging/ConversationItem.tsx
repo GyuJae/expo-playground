@@ -12,6 +12,8 @@ export function ConversationItem({ summary, currentUserId }: Props) {
     (m) => m.userId !== currentUserId,
   );
 
+  const unread = summary.unreadCount;
+
   return (
     <Link
       href={`/dm/${summary.conversation.id}`}
@@ -30,11 +32,18 @@ export function ConversationItem({ summary, currentUserId }: Props) {
           </p>
         )}
       </div>
-      {summary.lastMessage && (
-        <span className="shrink-0 text-xs text-muted-foreground">
-          {formatRelativeTime(new Date(summary.lastMessage.createdAt))}
-        </span>
-      )}
+      <div className="flex shrink-0 flex-col items-end gap-1">
+        {summary.lastMessage && (
+          <span className="text-xs text-muted-foreground">
+            {formatRelativeTime(new Date(summary.lastMessage.createdAt))}
+          </span>
+        )}
+        {unread > 0 && (
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-medium text-primary-foreground">
+            {unread > 99 ? "99+" : unread}
+          </span>
+        )}
+      </div>
     </Link>
   );
 }

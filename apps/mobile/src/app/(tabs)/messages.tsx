@@ -1,6 +1,7 @@
 import { FlatList, Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import { useConversations } from "@/hooks/useConversations";
+import { useUnreadCounts } from "@/hooks/useUnreadCounts";
 import { useAuth } from "@/context/AuthContext";
 import { ConversationCard } from "@/components/messaging/ConversationCard";
 import { LoadingView } from "@/components/common/LoadingView";
@@ -10,11 +11,17 @@ import { Plus } from "lucide-react-native";
 
 export default function MessagesTab() {
   const { conversations, loading, error, refetch } = useConversations();
+  const { getUnreadCount, refetch: refetchUnread } = useUnreadCounts();
   const { user } = useAuth();
   const router = useRouter();
 
   if (loading) return <LoadingView />;
   if (error) return <ErrorView message={error} onRetry={refetch} />;
+
+  const handleRefresh = () => {
+    refetch();
+    refetchUnread();
+  };
 
   return (
     <View className="flex-1 bg-white">
@@ -32,9 +39,13 @@ export default function MessagesTab() {
         data={conversations}
         keyExtractor={(item) => item.conversation.id}
         renderItem={({ item }) => (
-          <ConversationCard summary={item} currentUserId={user?.id ?? ""} />
+          <ConversationCard
+            summary={item}
+            currentUserId={user?.id ?? ""}
+            unreadCount={getUnreadCount(item.conversation.id)}
+          />
         )}
-        onRefresh={refetch}
+        onRefresh={handleRefresh}
         refreshing={loading}
         ListEmptyComponent={<EmptyView message="대화가 없습니다" />}
       />

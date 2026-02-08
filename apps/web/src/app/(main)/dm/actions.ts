@@ -8,18 +8,22 @@ import {
   SendMessage,
   ListMessages,
   GetProfile,
+  MarkConversationAsRead,
+  GetReadPositions,
 } from "@expo-playground/application";
 import {
   toConversationSummaryDTO,
   toConversationDTO,
   toMessageDTO,
   toUserDTO,
+  toReadPositionDTO,
 } from "@/lib/dto/serializers";
 import type {
   ConversationSummaryDTO,
   ConversationDTO,
   MessageDTO,
   UserDTO,
+  ReadPositionDTO,
 } from "@/lib/dto/types";
 
 /** 현재 인증 사용자 ID 조회 */
@@ -83,4 +87,21 @@ export async function fetchUserForDM(userId: string): Promise<UserDTO | null> {
 /** 현재 인증 사용자 ID 반환 */
 export async function getCurrentUserId(): Promise<string> {
   return requireAuth();
+}
+
+/** 대화 읽음 처리 */
+export async function markAsReadAction(conversationId: string): Promise<void> {
+  const userId = await requireAuth();
+  const useCase = await resolveUseCase(MarkConversationAsRead);
+  await useCase.execute({ conversationId, userId });
+}
+
+/** 대화 멤버들의 읽음 위치 조회 */
+export async function fetchReadPositions(
+  conversationId: string,
+): Promise<ReadPositionDTO[]> {
+  const userId = await requireAuth();
+  const useCase = await resolveUseCase(GetReadPositions);
+  const positions = await useCase.execute({ conversationId, requesterId: userId });
+  return positions.map(toReadPositionDTO);
 }
