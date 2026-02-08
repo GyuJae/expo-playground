@@ -1,0 +1,16 @@
+# Supabase Reverse Proxy + 자동 SSL (Let's Encrypt)
+# {$DOMAIN} 환경변수로 도메인 설정
+
+# API 엔드포인트 (Kong → Supabase API)
+api.{$DOMAIN} {
+	reverse_proxy kong:8000
+}
+
+# Studio 관리 대시보드 (IP 제한 권장)
+studio.{$DOMAIN} {
+	# 프로덕션에서는 아래 주석을 해제하고 허용 IP를 지정하세요
+	# @blocked not remote_ip 123.456.789.0/24
+	# respond @blocked 403
+
+	reverse_proxy kong:8000
+}
