@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MessageSquare, Home } from "lucide-react";
+import { MessageSquare, Home, UserCircle } from "lucide-react";
 
 export function Header() {
   return (
@@ -20,6 +20,12 @@ export function Header() {
             className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-accent"
           >
             <MessageSquare className="h-5 w-5" />
+          </Link>
+          <Link
+            href="/profile"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-accent"
+          >
+            <UserCircle className="h-5 w-5" />
           </Link>
         </nav>
       </div>
