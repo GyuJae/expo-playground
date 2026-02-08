@@ -45,6 +45,8 @@ export type {
   MessageRealtimePort,
   RealtimeSubscription,
 } from "./messaging/ports/MessageRealtimePort.js";
+export type { ReadReceiptRepository } from "./messaging/ports/ReadReceiptRepository.js";
+export type { ReadReceiptRealtimePort } from "./messaging/ports/ReadReceiptRealtimePort.js";
 
 // ── messaging 유스케이스 ──
 export { GetOrCreateConversation } from "./messaging/use-cases/GetOrCreateConversation.js";
@@ -52,6 +54,10 @@ export { ListConversations, type ConversationSummary } from "./messaging/use-cas
 export { SendMessage } from "./messaging/use-cases/SendMessage.js";
 export { ListMessages } from "./messaging/use-cases/ListMessages.js";
 export { SubscribeToMessages } from "./messaging/use-cases/SubscribeToMessages.js";
+export { MarkConversationAsRead } from "./messaging/use-cases/MarkConversationAsRead.js";
+export { GetUnreadCounts, type UnreadCount } from "./messaging/use-cases/GetUnreadCounts.js";
+export { GetReadPositions } from "./messaging/use-cases/GetReadPositions.js";
+export { SubscribeToReadReceipts } from "./messaging/use-cases/SubscribeToReadReceipts.js";
 
 // ── community realtime 유스케이스 ──
 export { SubscribeToComments } from "./community/use-cases/SubscribeToComments.js";

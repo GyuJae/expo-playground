@@ -10,4 +10,6 @@ export const DI_TOKENS = {
   MessageRepository: "MessageRepository",
   MessageRealtimePort: "MessageRealtimePort",
   CommentRealtimePort: "CommentRealtimePort",
+  ReadReceiptRepository: "ReadReceiptRepository",
+  ReadReceiptRealtimePort: "ReadReceiptRealtimePort",
 } as const;

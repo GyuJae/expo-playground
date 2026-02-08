@@ -6,16 +6,18 @@ import {
 } from "@expo-playground/domain";
 import type { ConversationRepository } from "../ports/ConversationRepository.js";
 import type { MessageRepository } from "../ports/MessageRepository.js";
+import type { ReadReceiptRepository } from "../ports/ReadReceiptRepository.js";
 import { DI_TOKENS } from "../../shared/tokens.js";
 
-/** 대화 요약 — 마지막 메시지 포함 */
+/** 대화 요약 — 마지막 메시지 + 안 읽은 수 포함 */
 export interface ConversationSummary {
   conversation: Conversation;
   lastMessage: Message | null;
+  unreadCount: number;
 }
 
 /**
- * 사용자의 대화 목록 조회 유스케이스 — 마지막 메시지 미리보기 포함
+ * 사용자의 대화 목록 조회 유스케이스 — 마지막 메시지 미리보기 + 안 읽은 수 포함
  */
 @injectable()
 export class ListConversations {
@@ -24,6 +26,8 @@ export class ListConversations {
     private convRepo: ConversationRepository,
     @inject(DI_TOKENS.MessageRepository)
     private msgRepo: MessageRepository,
+    @inject(DI_TOKENS.ReadReceiptRepository)
+    private readReceiptRepo: ReadReceiptRepository,
   ) {}
 
   async execute(userId: string): Promise<ConversationSummary[]> {
@@ -32,9 +36,11 @@ export class ListConversations {
 
     const summaries: ConversationSummary[] = await Promise.all(
       conversations.map(async (conversation) => {
-        const lastMessage =
-          await this.msgRepo.findLatestByConversationId(conversation.id);
-        return { conversation, lastMessage };
+        const [lastMessage, unreadCount] = await Promise.all([
+          this.msgRepo.findLatestByConversationId(conversation.id),
+          this.readReceiptRepo.countUnread(conversation.id, id),
+        ]);
+        return { conversation, lastMessage, unreadCount };
       }),
     );
 
