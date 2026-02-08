@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { CommentItem } from "./CommentItem";
 import { CommentForm } from "./CommentForm";
+import { useRealtimeComments } from "@/hooks/useRealtimeComments";
 import type { CommentDTO } from "@/lib/dto/types";
 
 interface Props {
@@ -14,8 +15,23 @@ interface Props {
 export function CommentSection({ postId, initialComments, currentUserId }: Props) {
   const [comments, setComments] = useState(initialComments);
 
+  const handleRealtimeComment = useCallback(
+    (comment: CommentDTO) => {
+      setComments((prev) => {
+        if (prev.some((c) => c.id === comment.id)) return prev;
+        return [...prev, comment];
+      });
+    },
+    [],
+  );
+
+  useRealtimeComments(postId, handleRealtimeComment);
+
   function handleCreated(comment: CommentDTO) {
-    setComments((prev) => [...prev, comment]);
+    setComments((prev) => {
+      if (prev.some((c) => c.id === comment.id)) return prev;
+      return [...prev, comment];
+    });
   }
 
   function handleUpdate(updated: CommentDTO) {
