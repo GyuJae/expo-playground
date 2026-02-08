@@ -10,10 +10,25 @@
     "splash": {
       "backgroundColor": "#ffffff"
     },
+    "ios": {
+      "bundleIdentifier": "com.expoplayground.app",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.expoplayground.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
+    },
     "web": {
       "bundler": "metro",
       "output": "static"
     },
-    "plugins": ["expo-router"]
+    "plugins": ["expo-router"],
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    }
   }
 }
