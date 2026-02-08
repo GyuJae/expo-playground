@@ -14,9 +14,11 @@ async function initRequestContainer() {
 }
 
 /** Server Action에서 유스케이스를 resolve하여 반환하는 헬퍼 */
-export async function resolveUseCase<T>(
-  UseCaseClass: new (...args: any[]) => T,
-): Promise<T> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Constructor<T> = new (...args: any[]) => T;
+
+export async function resolveUseCase<T>(UseCaseClass: Constructor<T>): Promise<T> {
   await initRequestContainer();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return container.resolve(UseCaseClass as any);
 }
