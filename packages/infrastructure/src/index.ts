@@ -15,6 +15,8 @@ export { SupabaseMessageRepository } from "./supabase/SupabaseMessageRepository.
 // ── Supabase Realtime 어댑터 ──
 export { SupabaseMessageRealtime } from "./supabase/SupabaseMessageRealtime.js";
 export { SupabaseCommentRealtime } from "./supabase/SupabaseCommentRealtime.js";
+export { SupabaseReadReceiptRepository } from "./supabase/SupabaseReadReceiptRepository.js";
+export { SupabaseReadReceiptRealtime } from "./supabase/SupabaseReadReceiptRealtime.js";
 
 // ── DI 컨테이너 등록 ──
 export { registerSupabaseAdapters } from "./container.js";
