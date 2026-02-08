@@ -5,6 +5,8 @@ module.exports = function (api) {
       ["babel-preset-expo", { jsxImportSource: "nativewind" }],
     ],
     plugins: [
+      "babel-plugin-transform-typescript-metadata",
+      ["@babel/plugin-proposal-decorators", { legacy: true }],
       "nativewind/babel",
     ],
   };
