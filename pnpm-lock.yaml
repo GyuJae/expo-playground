@@ -115,12 +115,18 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.4.0
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18
+      tsyringe:
+        specifier: ^4.10.0
+        version: 4.10.0
     devDependencies:
       '@expo-playground/config':
         specifier: workspace:*

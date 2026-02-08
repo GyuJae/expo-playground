@@ -24,8 +24,10 @@
     "next": "~15.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "reflect-metadata": "^0.2.2",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "tsyringe": "^4.10.0"
   },
   "devDependencies": {
     "@expo-playground/config": "workspace:*",
