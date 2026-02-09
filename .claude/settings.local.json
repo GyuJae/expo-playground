@@ -49,7 +49,24 @@
       "Bash(pnpm turbo build:*)",
       "Bash(PGPASSWORD=postgres psql:*)",
       "Bash(pnpm --filter @expo-playground/infrastructure exec vitest run:*)",
-      "Bash(pnpm turbo lint typecheck:*)"
+      "Bash(pnpm turbo lint typecheck:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm --filter web build:*)",
+      "Bash(pnpm --filter web typecheck:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm --filter mobile typecheck:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "Bash(DOCKER_SOCKET_LOCATION=/var/run/docker.sock docker compose:*)",
+      "Bash(bash scripts/generate-keys.sh:*)",
+      "Bash(chmod:*)",
+      "Bash(git push:*)",
+      "Bash(pnpm --filter domain test:*)",
+      "Bash(pnpm --filter application test:*)",
+      "Bash(pnpm --filter domain build:*)",
+      "Bash(pnpm:*)",
+      "Bash(node:*)",
+      "Bash(python3:*)"
     ]
   },
   "enableAllProjectMcpServers": false
