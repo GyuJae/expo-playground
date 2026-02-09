@@ -31,6 +31,7 @@ Thumbs.db
 
 # Test
 coverage/
+.service-role-key
 
 # Supabase
 supabase/.temp/

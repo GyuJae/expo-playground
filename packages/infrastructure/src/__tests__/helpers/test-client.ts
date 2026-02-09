@@ -1,13 +1,19 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
-/** Supabase 로컬 well-known 값 */
+/** Supabase 로컬 URL */
 const SUPABASE_URL = "http://127.0.0.1:54321";
-const SERVICE_ROLE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU";
 
 /**
- * service_role 키를 사용하는 관리자 클라이언트 생성
- * — RLS 우회, 테스트 전용
+ * globalSetup에서 생성한 ES256 service_role JWT를 동기적으로 읽는다.
+ * — Supabase CLI 2.76+ 에서 GoTrue가 ES256을 사용하므로 동적 생성 필요.
+ */
+const KEY_FILE = join(import.meta.dirname, ".service-role-key");
+const SERVICE_ROLE_KEY = readFileSync(KEY_FILE, "utf8").trim();
+
+/**
+ * service_role 키를 사용하는 관리자 클라이언트 반환
  */
 export function createAdminClient(): SupabaseClient {
   return createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
